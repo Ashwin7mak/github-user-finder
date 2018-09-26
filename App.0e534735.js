@@ -21151,8 +21151,8 @@ if ('development' === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"logo.png":[function(require,module,exports) {
-module.exports = "/logo.6ba2ac11.png";
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../public/logo.png":[function(require,module,exports) {
+module.exports = "/logo.21184f2b.png";
 },{}],"Header.js":[function(require,module,exports) {
 "use strict";
 
@@ -21164,7 +21164,7 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _logo = require("./logo.png");
+var _logo = require("../public/logo.png");
 
 var _logo2 = _interopRequireDefault(_logo);
 
@@ -21184,7 +21184,7 @@ var Header = function Header() {
 };
 
 exports.default = Header;
-},{"react":"../node_modules/react/index.js","./logo.png":"logo.png"}],"../node_modules/github-username-regex/module.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../public/logo.png":"../public/logo.png"}],"../node_modules/github-username-regex/module.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -23525,7 +23525,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49245' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57927' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
