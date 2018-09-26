@@ -22819,6 +22819,11 @@ module.exports = require('./lib/axios');
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getProfile = getProfile;
+exports.getRepos = getRepos;
+exports.getStarCount = getStarCount;
+exports.handleError = handleError;
+exports.getUserData = getUserData;
 
 var _axios = require("axios");
 
@@ -22843,9 +22848,12 @@ function getRepos(username) {
 }
 
 function getStarCount(repos) {
-  return repos.reduce(function (count, repo) {
-    return count + repo.stargazers_count;
-  }, 0);
+  if (Array.isArray(repos) && repos.length > 0) {
+    return repos.reduce(function (count, repo) {
+      return count + repo.stargazers_count;
+    }, 0);
+  }
+  return 0;
 }
 
 function handleError(error) {
@@ -23194,7 +23202,6 @@ var Main = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state.usersData);
       return _react2.default.createElement(
         "div",
         { className: "main" },
@@ -23227,12 +23234,12 @@ var Main = function (_React$Component) {
             { className: "inline fields" },
             _react2.default.createElement(
               "label",
-              null,
+              { htmlFor: "sorting" },
               "Sort results by: "
             ),
             _react2.default.createElement(
               "div",
-              { className: "field" },
+              { className: "field", id: "sorting" },
               _react2.default.createElement(
                 "div",
                 { className: "ui radio checkbox" },
