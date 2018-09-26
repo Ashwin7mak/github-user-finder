@@ -23184,7 +23184,7 @@ var Main = function (_React$Component) {
       var currentUsers = this.state.usersData.map(function (user) {
         return user.username;
       });
-      var currentInput = this.state.input;
+      var currentInput = this.state.input.trim();
       if (_githubUsernameRegex2.default.test(currentInput) && currentUsers.indexOf(currentInput) === -1 && !this.state.currentApiCall) {
         this.setState({ currentApiCall: true });
         _api2.default.getData(currentInput).then(function (userData) {
