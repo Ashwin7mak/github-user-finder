@@ -23202,6 +23202,7 @@ var Main = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var displaySort = this.state.usersData.length > 1 ? "visible" : "hidden";
       return _react2.default.createElement(
         "div",
         { className: "main" },
@@ -23228,7 +23229,7 @@ var Main = function (_React$Component) {
         ),
         _react2.default.createElement(
           "form",
-          { className: "ui form" },
+          { className: "ui form", style: { visibility: displaySort } },
           _react2.default.createElement(
             "div",
             { className: "inline fields" },
@@ -23524,7 +23525,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49885' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49245' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
