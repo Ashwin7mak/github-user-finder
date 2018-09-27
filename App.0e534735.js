@@ -25048,7 +25048,7 @@ function getUserData(user) {
       location: profile.location || "Earth",
       bio: profile.bio,
       followers: profile.followers,
-      reposCount: profile.public_repos,
+      repos: profile.public_repos,
       hireable: profile.hireable
     };
     //window.localStorage.setItem(res.username, JSON.stringify(res));
@@ -25108,7 +25108,6 @@ var UserCard = function (_React$Component) {
           hireable = _props.hireable,
           stargazers = _props.stargazers,
           followers = _props.followers,
-          reposCount = _props.reposCount,
           click = _props.click;
 
       return _react2.default.createElement(
@@ -25140,16 +25139,16 @@ var UserCard = function (_React$Component) {
           ),
           _react2.default.createElement(
             "div",
-            { className: "extra" },
+            { className: "extra", style: { color: "#A0A0A0" } },
             _react2.default.createElement(
               "span",
-              { style: { color: "#A0A0A0" } },
+              null,
               "Location:"
             ),
             location,
             _react2.default.createElement(
               "p",
-              { style: { color: "#A0A0A0" } },
+              { style: { color: "#FF1493" } },
               hireable ? "Availble for job offers" : null
             )
           ),
@@ -25174,8 +25173,7 @@ var UserCard = function (_React$Component) {
               "span",
               null,
               _react2.default.createElement("i", { className: "file code outline icon" }),
-              reposCount,
-              " Repos"
+              "75 Repos"
             ),
             _react2.default.createElement(
               "div",
@@ -25269,7 +25267,7 @@ var DisplayUsersList = function (_React$Component) {
             stargazers: addCommas(user.stargazers),
             avatarUrl: user.avatarUrl,
             followers: user.followers,
-            reposCount: user.reposCount,
+            repos: user.repos,
             hireable: user.hireable,
             click: _this2.props.click
           });
@@ -25287,100 +25285,7 @@ var DisplayUsersList = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = DisplayUsersList;
-},{"react":"../node_modules/react/index.js","./UserCard":"UserCard.js"}],"Sorting.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Sorting = function Sorting(props) {
-  return _react2.default.createElement(
-    "form",
-    { className: "ui form", style: { visibility: props.display } },
-    _react2.default.createElement(
-      "div",
-      { className: "inline fields" },
-      _react2.default.createElement(
-        "label",
-        { htmlFor: "sorting" },
-        "Sort results by: "
-      ),
-      _react2.default.createElement(
-        "div",
-        { className: "field", id: "sorting" },
-        _react2.default.createElement(
-          "div",
-          { className: "ui radio checkbox" },
-          _react2.default.createElement("input", {
-            type: "radio",
-            name: "sort by",
-            value: "stargazers",
-            id: "stargazers",
-            checked: props.sortBy === "stargazers",
-            onChange: props.onOptionChange
-          }),
-          _react2.default.createElement(
-            "label",
-            { htmlFor: "stargazers" },
-            "Stargazers"
-          )
-        )
-      ),
-      _react2.default.createElement(
-        "div",
-        { className: "field" },
-        _react2.default.createElement(
-          "div",
-          { className: "ui radio checkbox" },
-          _react2.default.createElement("input", {
-            type: "radio",
-            name: "sort by",
-            value: "followers",
-            id: "followers",
-            checked: props.sortBy === "followers",
-            onChange: props.onOptionChange
-          }),
-          _react2.default.createElement(
-            "label",
-            { htmlFor: "followers" },
-            "Followers"
-          )
-        )
-      ),
-      _react2.default.createElement(
-        "div",
-        { className: "field" },
-        _react2.default.createElement(
-          "div",
-          { className: "ui radio checkbox" },
-          _react2.default.createElement("input", {
-            type: "radio",
-            name: "sort by",
-            value: "repos",
-            id: "repos",
-            checked: props.sortBy === "repos",
-            onChange: props.onOptionChange
-          }),
-          _react2.default.createElement(
-            "label",
-            { htmlFor: "repos", onChange: props.onOptionChange },
-            "Repos"
-          )
-        )
-      )
-    )
-  );
-};
-
-exports.default = Sorting;
-},{"react":"../node_modules/react/index.js"}],"Main.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./UserCard":"UserCard.js"}],"Main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25404,10 +25309,6 @@ var _api2 = _interopRequireDefault(_api);
 var _DisplayUsersList = require("./DisplayUsersList");
 
 var _DisplayUsersList2 = _interopRequireDefault(_DisplayUsersList);
-
-var _Sorting = require("./Sorting");
-
-var _Sorting2 = _interopRequireDefault(_Sorting);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25497,10 +25398,10 @@ var Main = function (_React$Component) {
       var displaySort = this.state.usersData.length > 1 ? "visible" : "hidden";
       return _react2.default.createElement(
         "div",
-        { className: "Main" },
+        { className: "main" },
         _react2.default.createElement(
           "div",
-          { id: "search-input-btn", className: "ui action input left icon" },
+          { className: "ui action input left icon center" },
           _react2.default.createElement("input", {
             type: "text",
             placeholder: "Search users...",
@@ -25519,11 +25420,82 @@ var Main = function (_React$Component) {
             "Search"
           )
         ),
-        _react2.default.createElement(_Sorting2.default, {
-          onOptionChange: this.handleOptionChange,
-          display: displaySort,
-          sortBy: this.state.sortBy
-        }),
+        _react2.default.createElement(
+          "form",
+          { className: "ui form", style: { visibility: displaySort } },
+          _react2.default.createElement(
+            "div",
+            { className: "inline fields" },
+            _react2.default.createElement(
+              "label",
+              { htmlFor: "sorting" },
+              "Sort results by: "
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "field", id: "sorting" },
+              _react2.default.createElement(
+                "div",
+                { className: "ui radio checkbox" },
+                _react2.default.createElement("input", {
+                  type: "radio",
+                  name: "sort by",
+                  value: "stargazers",
+                  id: "stargazers",
+                  checked: this.state.sortBy === "stargazers",
+                  onChange: this.handleOptionChange
+                }),
+                _react2.default.createElement(
+                  "label",
+                  { htmlFor: "stargazers" },
+                  "Stargazers"
+                )
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "field" },
+              _react2.default.createElement(
+                "div",
+                { className: "ui radio checkbox" },
+                _react2.default.createElement("input", {
+                  type: "radio",
+                  name: "sort by",
+                  value: "followers",
+                  id: "followers",
+                  checked: this.state.sortBy === "followers",
+                  onChange: this.handleOptionChange
+                }),
+                _react2.default.createElement(
+                  "label",
+                  { htmlFor: "followers" },
+                  "Followers"
+                )
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "field" },
+              _react2.default.createElement(
+                "div",
+                { className: "ui radio checkbox" },
+                _react2.default.createElement("input", {
+                  type: "radio",
+                  name: "sort by",
+                  value: "repos",
+                  id: "repos",
+                  checked: this.state.sortBy === "repos",
+                  onChange: this.handleOptionChange
+                }),
+                _react2.default.createElement(
+                  "label",
+                  { htmlFor: "repos", onChange: this.handleOptionChange },
+                  "Repos"
+                )
+              )
+            )
+          )
+        ),
         _react2.default.createElement(_DisplayUsersList2.default, {
           sortBy: this.state.sortBy,
           users: this.state.usersData,
@@ -25537,7 +25509,7 @@ var Main = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Main;
-},{"react":"../node_modules/react/index.js","github-username-regex":"../node_modules/github-username-regex/module.js","./api":"api.js","./DisplayUsersList":"DisplayUsersList.js","./Sorting":"Sorting.js"}],"UserDetails.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","github-username-regex":"../node_modules/github-username-regex/module.js","./api":"api.js","./DisplayUsersList":"DisplayUsersList.js"}],"UserDetails.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25618,7 +25590,7 @@ var UserDetails = function (_React$Component) {
       }
       return _react2.default.createElement(
         "div",
-        { className: "UserDetails" },
+        { className: "main" },
         _react2.default.createElement(
           "div",
           { className: "image" },
@@ -25673,8 +25645,13 @@ var UserDetails = function (_React$Component) {
             _react2.default.createElement(
               "span",
               null,
-              this.state.userData.reposCount
-            )
+              this.state.userData.repos
+            ),
+            _react2.default.createElement("i", {
+              className: "icon delete ui right",
+              style: { color: "lightgrey" },
+              title: "Remove from list"
+            })
           ),
           _react2.default.createElement(
             "div",
@@ -25682,6 +25659,8 @@ var UserDetails = function (_React$Component) {
             _react2.default.createElement(
               "h4",
               null,
+              this.state.userData.title,
+              _react2.default.createElement("br", null),
               _react2.default.createElement(
                 "a",
                 {
@@ -25689,10 +25668,8 @@ var UserDetails = function (_React$Component) {
                   target: "_blank",
                   rel: "noopener noreferrer"
                 },
-                this.state.userData.title
-              ),
-              _react2.default.createElement("br", null),
-              this.state.userData.username
+                this.state.userData.username
+              )
             ),
             _react2.default.createElement(
               "p",
@@ -25740,7 +25717,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var About = function About() {
   return _react2.default.createElement(
     "div",
-    { className: "About" },
+    { className: "about" },
     _react2.default.createElement(
       "h4",
       null,
@@ -25782,13 +25759,12 @@ var Footer = function Footer() {
       { className: "text-footer" },
       _react2.default.createElement(
         "p",
-        { style: { color: "white" } },
+        null,
         "Created by",
         " ",
         _react2.default.createElement(
           "a",
           {
-            className: "footer-links",
             href: "https://zurda.github.io/portfolio/",
             target: "_blank",
             rel: "noopener noreferrer"
@@ -25801,7 +25777,6 @@ var Footer = function Footer() {
         _react2.default.createElement(
           "a",
           {
-            className: "footer-links",
             href: "https://github.com/zurda/github-user-finder",
             target: "_blank",
             rel: "noopener noreferrer"
@@ -25983,7 +25958,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58754' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50504' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

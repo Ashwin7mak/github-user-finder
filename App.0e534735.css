@@ -48,18 +48,8 @@
 .header span {
   margin-right: 15px;
 }
-.UserDetails {
-  padding-bottom: 60px;
-}
-.Main,
-.UserDetails,
-.About {
-  margin: 0 auto;
-  padding-top: 20px;
-}
-#search-input-btn {
-  margin: 0 auto;
-  min-width: 30%;
+.extra.content * {
+  color: "#A0A0A0";
 }
 footer {
   position: fixed;
