@@ -25537,8 +25537,7 @@ var Main = function (_React$Component) {
         _react2.default.createElement(_Search2.default, {
           value: this.state.input,
           change: this.inputHandler,
-          click: this.clickHandler,
-          keyDown: this.keyDownHandler
+          click: this.clickHandler
         }),
         _react2.default.createElement(_Sorting2.default, {
           onOptionChange: this.handleOptionChange,
@@ -26004,7 +26003,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54815' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56506' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
