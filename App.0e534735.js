@@ -25393,13 +25393,12 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var keyDownHandler = function keyDownHandler(event) {
-  if (event.keyCode === 13) {
-    document.getElementById("searchBtn").click();
-  }
-};
-
 var Search = function Search(props) {
+  function keyDownHandler(event) {
+    if (event.keyCode === 13) {
+      document.getElementById("searchBtn").click();
+    }
+  }
   return _react2.default.createElement(
     "div",
     { id: "search-input-btn", className: "ui action input left icon" },
@@ -26005,7 +26004,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51546' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54815' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
