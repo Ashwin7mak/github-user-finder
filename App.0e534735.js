@@ -25916,9 +25916,9 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           _router.Router,
           null,
-          _react2.default.createElement(_Main2.default, { path: "/" }),
-          _react2.default.createElement(_UserDetails2.default, { path: "details/:userName" }),
-          _react2.default.createElement(_About2.default, { path: "/about" })
+          _react2.default.createElement(_Main2.default, { path: undefined + "/" }),
+          _react2.default.createElement(_UserDetails2.default, { path: undefined + "/details/:userName\"" }),
+          _react2.default.createElement(_About2.default, { path: undefined + "/about" })
         ),
         _react2.default.createElement(_Footer2.default, null)
       );
@@ -25958,7 +25958,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50504' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52832' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
