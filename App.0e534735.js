@@ -25380,45 +25380,6 @@ var Sorting = function Sorting(props) {
 };
 
 exports.default = Sorting;
-},{"react":"../node_modules/react/index.js"}],"Search.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Search = function Search(props) {
-  function keyDownHandler(event) {
-    if (event.keyCode === 13) {
-      document.getElementById("searchBtn").click();
-    }
-  }
-  return _react2.default.createElement(
-    "div",
-    { id: "search-input-btn", className: "ui action input left icon" },
-    _react2.default.createElement("input", {
-      type: "text",
-      placeholder: "Search users...",
-      value: props.value,
-      onChange: props.change,
-      onKeyDown: keyDownHandler
-    }),
-    _react2.default.createElement("i", { className: "users icon" }),
-    _react2.default.createElement(
-      "button",
-      { className: "ui button", id: "searchBtn", onClick: props.click },
-      "Search"
-    )
-  );
-};
-
-exports.default = Search;
 },{"react":"../node_modules/react/index.js"}],"Main.js":[function(require,module,exports) {
 "use strict";
 
@@ -25448,10 +25409,6 @@ var _Sorting = require("./Sorting");
 
 var _Sorting2 = _interopRequireDefault(_Sorting);
 
-var _Search = require("./Search");
-
-var _Search2 = _interopRequireDefault(_Search);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25474,9 +25431,9 @@ var Main = function (_React$Component) {
       usersData: [],
       sortBy: "stargazers"
     };
-
     _this.inputHandler = _this.inputHandler.bind(_this);
     _this.clickHandler = _this.clickHandler.bind(_this);
+    _this.keyDownHandler = _this.keyDownHandler.bind(_this);
     _this.handleOptionChange = _this.handleOptionChange.bind(_this);
     _this.deleteUser = _this.deleteUser.bind(_this);
     return _this;
@@ -25503,6 +25460,13 @@ var Main = function (_React$Component) {
     value: function inputHandler(event) {
       var input = event.target.value;
       this.setState({ input: input });
+    }
+  }, {
+    key: "keyDownHandler",
+    value: function keyDownHandler(event) {
+      if (event.keyCode === 13) {
+        document.getElementById("searchBtn").click();
+      }
     }
   }, {
     key: "clickHandler",
@@ -25534,11 +25498,27 @@ var Main = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         { className: "Main" },
-        _react2.default.createElement(_Search2.default, {
-          value: this.state.input,
-          change: this.inputHandler,
-          click: this.clickHandler
-        }),
+        _react2.default.createElement(
+          "div",
+          { id: "search-input-btn", className: "ui action input left icon" },
+          _react2.default.createElement("input", {
+            type: "text",
+            placeholder: "Search users...",
+            value: this.state.input,
+            onChange: this.inputHandler,
+            onKeyDown: this.keyDownHandler
+          }),
+          _react2.default.createElement("i", { className: "users icon" }),
+          _react2.default.createElement(
+            "button",
+            {
+              className: "ui button",
+              id: "searchBtn",
+              onClick: this.clickHandler
+            },
+            "Search"
+          )
+        ),
         _react2.default.createElement(_Sorting2.default, {
           onOptionChange: this.handleOptionChange,
           display: displaySort,
@@ -25557,7 +25537,7 @@ var Main = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Main;
-},{"react":"../node_modules/react/index.js","github-username-regex":"../node_modules/github-username-regex/module.js","./api":"api.js","./DisplayUsersList":"DisplayUsersList.js","./Sorting":"Sorting.js","./Search":"Search.js"}],"UserDetails.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","github-username-regex":"../node_modules/github-username-regex/module.js","./api":"api.js","./DisplayUsersList":"DisplayUsersList.js","./Sorting":"Sorting.js"}],"UserDetails.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26003,7 +25983,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56506' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56970' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
